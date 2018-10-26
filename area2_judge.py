@@ -3,12 +3,12 @@
 
 import nfc
 import time
-import pygame.mixer
+import vlc
 import os
 
 
 #初期設定
-pygame.mixer.init()
+p = vlc.MediaPlayer()
 count = 0
 loop = 0
 
@@ -23,7 +23,10 @@ def connected(tag):
     if judge == '04808D72845C81':
         if judge != loop:
             print "正解"
-            os.sysyem('')
+            p.set_mrl('')
+            p.play()
+            p.set_time(15000)
+            p.stop()
             loop = judge
         print "本物の財宝が乗っています"
         count += 1
@@ -33,7 +36,10 @@ def connected(tag):
     else:
         if judge != loop:
             print "不正解"
-            os.system('')
+            p.set_mrl('')
+            p.play()
+            p.set_time(1000)
+            p.stop()
             loop = judge
         print "偽物の財宝が乗っています"
         count += 1
