@@ -3,14 +3,14 @@
 
 import nfc
 import time
-import pygame.mixer
 import os
+import vlc
 
 
 #初期設定
-pygame.mixer.init()
 count = 0
 loop = 0
+p = vlc.MediaPlayer()
 
 #財宝を判定する
 def connected(tag):
@@ -20,13 +20,13 @@ def connected(tag):
     judge = str(tag.identifier).encode('hex').upper()
 
     #本物の財宝の場合
-    if judge == '0451B3F2295881':
+    if judge == '0476A072845C81':
         if judge != loop:
             print "正解"
-            pygame.mixer.music.load("/home/pi/sound/Sounds/Answer.mp3")
-            pygame.mixer.music.play(1)
-            time.sleep(3)
-            pygame.mixer.music.stop()
+            p.set_mrl('')
+            p.play()
+            p.set_time(15000)
+            p.stop()
             loop = judge
         print "本物の財宝が乗っています"
         count += 1
@@ -36,10 +36,10 @@ def connected(tag):
     else:
         if judge != loop:
             print "不正解"
-            pygame.mixer.music.load("/home/pi/sound/Sounds/Buzzer.mp3")
-            pygame.mixer.music.play(1)
-            time.sleep(3)
-            pygame.mixer.music.stop()
+            p.set_mrl('')
+            p.play()
+            p.set_time(1000)
+            p.stop()
             loop = judge
         print "偽物の財宝が乗っています"
         count += 1

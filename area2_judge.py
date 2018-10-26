@@ -20,13 +20,10 @@ def connected(tag):
     judge = str(tag.identifier).encode('hex').upper()
 
     #本物の財宝の場合
-    if judge == '0451B3F2295881':
+    if judge == '04808D72845C81':
         if judge != loop:
             print "正解"
-            pygame.mixer.music.load("/home/pi/sound/Sounds/Answer.mp3")
-            pygame.mixer.music.play(1)
-            time.sleep(3)
-            pygame.mixer.music.stop()
+            os.sysyem('')
             loop = judge
         print "本物の財宝が乗っています"
         count += 1
@@ -36,10 +33,7 @@ def connected(tag):
     else:
         if judge != loop:
             print "不正解"
-            pygame.mixer.music.load("/home/pi/sound/Sounds/Buzzer.mp3")
-            pygame.mixer.music.play(1)
-            time.sleep(3)
-            pygame.mixer.music.stop()
+            os.system('')
             loop = judge
         print "偽物の財宝が乗っています"
         count += 1
